@@ -11,47 +11,6 @@
 
 <!-- Favicon / Logo di Tab Browser -->
 <link rel="icon" type="image/png" href="logo.png" />
-
-<style>
-/* --- Styles tambahan untuk rating & loader --- */
-#ratingStars span {
-    font-size: 24px;
-    cursor: pointer;
-    color: #ccc;
-    transition: color 0.3s;
-}
-#ratingStars span.selected {
-    color: gold;
-}
-#submitBtn {
-    position: relative;
-}
-#submitBtn .loader {
-    display: none;
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    width: 18px;
-    height: 18px;
-    border: 3px solid #fff;
-    border-top: 3px solid transparent;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    transform: translateY(-50%);
-}
-#submitBtn.loading .loader {
-    display: block;
-}
-@keyframes spin {
-    0% { transform: translateY(-50%) rotate(0deg); }
-    100% { transform: translateY(-50%) rotate(360deg); }
-}
-/* Dark mode toggle */
-body.dark {
-    background: #121212;
-    color: #eee;
-}
-</style>
 </head>
 <body>
 
@@ -171,7 +130,7 @@ form.addEventListener("submit", async (e) => {
     };
 
     try {
-        // POST data ke GAS
+        // POST data ke GAS dengan x-www-form-urlencoded + no-cors
         await fetch(SCRIPT_URL, {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -179,8 +138,12 @@ form.addEventListener("submit", async (e) => {
             mode: "no-cors"
         });
 
-        // Redirect ke success.html setelah submit
-        window.location.href = "success.html";
+        alert("Feedback terkirim!");
+        form.reset();
+        ratingStars.forEach(s => s.classList.remove("selected"));
+        ratingInput.value = "";
+        submitBtn.classList.remove("loading");
+        submitBtn.disabled = false;
 
     } catch (error) {
         console.error(error);
