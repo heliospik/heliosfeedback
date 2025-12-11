@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Helios Feedback</title>
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -10,32 +10,29 @@
 <body>
 
 <div class="container">
-  <img src="logo.png" class="logo" />
+  <img src="logo.png" class="logo">
   <h2 class="title">Kritik & Saran</h2>
   <p class="subtitle">Kami menghargai masukan Anda untuk peningkatan layanan kami.</p>
 
   <form id="feedbackForm">
     <label>Nama Anda (optional)</label>
-    <input type="text" id="nama" placeholder="Tulis nama Anda..." />
+    <input type="text" id="nama" placeholder="Tulis nama Anda...">
 
     <label>Nomor Table</label>
     <select id="tableNo" required>
       <option value="" disabled selected>Pilih Nomor Table</option>
-      <option>ST1</option><option>ST2</option><option>S3</option>
-      <option>S7</option><option>S8</option><option>S9</option>
-      <option>S12</option><option>S5</option><option>S6</option>
-      <option>S2</option><option>S11</option><option>S13</option>
-      <option>S1</option><option>S10</option><option>S15</option>
-      <option>T1</option><option>T2</option><option>T3</option>
-      <option>T5</option><option>T6</option><option>T7</option>
-      <option>VIP1</option><option>VIP2</option><option>BL10</option>
-      <option>BL11</option><option>BL12</option><option>BL13</option>
-      <option>BL1</option><option>BL8</option><option>BL2</option>
-      <option>BL9</option><option>BL3</option><option>BL5</option>
-      <option>BL6</option><option>BL7</option><option>ALULA</option>
-      <option>AZURE</option><option>AQUILA</option><option>SIRIUS</option>
-      <option>SELENE</option><option>HERA</option><option>HEMERA</option>
-      <option>DRACO</option><option>LUCIUS</option><option>PENTHOUSE</option>
+      <option>ST1</option><option>ST2</option><option>S3</option><option>S7</option>
+      <option>S8</option><option>S9</option><option>S12</option><option>S5</option>
+      <option>S6</option><option>S2</option><option>S11</option><option>S13</option>
+      <option>S1</option><option>S10</option><option>S15</option><option>T1</option>
+      <option>T2</option><option>T3</option><option>T5</option><option>T6</option>
+      <option>T7</option><option>VIP1</option><option>VIP2</option><option>BL10</option>
+      <option>BL11</option><option>BL12</option><option>BL13</option><option>BL1</option>
+      <option>BL8</option><option>BL2</option><option>BL9</option><option>BL3</option>
+      <option>BL5</option><option>BL6</option><option>BL7</option><option>ALULA</option>
+      <option>AZURE</option><option>AQUILA</option><option>SIRIUS</option><option>SELENE</option>
+      <option>HERA</option><option>HEMERA</option><option>DRACO</option><option>LUCIUS</option>
+      <option>PENTHOUSE</option>
     </select>
 
     <label>Kategori Komplain</label>
@@ -56,7 +53,7 @@
       <span data-value="4">★</span>
       <span data-value="5">★</span>
     </div>
-    <input type="hidden" id="rating" required />
+    <input type="hidden" id="rating" required>
 
     <label>Kritik & Saran Anda</label>
     <textarea id="message" placeholder="Tulis masukan Anda..." required></textarea>
@@ -71,7 +68,7 @@
 </div>
 
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFPZOz2hZl45FjLHr8nLe8rePGeZse4iiXpB8C-rCErL644oMW64l2MZxMli1WMJYp4w/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFPZOz2hZl45FjLHr8nLe8rePGeZse4iiXpB8C-rCErL644oMW64l2MZxMli1WMJYp4w/exec"; // Ganti dengan URL Web App terbaru
 
 const form = document.getElementById("feedbackForm");
 const submitBtn = document.getElementById("submitBtn");
@@ -83,17 +80,16 @@ ratingStars.forEach(star => {
   star.addEventListener("click", () => {
     const val = parseInt(star.dataset.value);
     ratingStars.forEach(s => s.classList.remove("selected"));
-    ratingStars.forEach(s => {
-      if (parseInt(s.dataset.value) <= val) s.classList.add("selected");
-    });
+    ratingStars.forEach(s => { if (parseInt(s.dataset.value) <= val) s.classList.add("selected"); });
     ratingInput.value = val;
   });
 });
 
-// Submit
+// Submit form
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   if (!ratingInput.value) { alert("Pilih rating!"); return; }
+
   submitBtn.classList.add("loading"); submitBtn.disabled = true;
 
   const data = {
@@ -125,12 +121,10 @@ form.addEventListener("submit", async (e) => {
   }
 });
 
-// Dark mode
+// Dark mode toggle
 document.getElementById("toggleMode").addEventListener("click", () => {
   document.body.classList.toggle("dark");
 });
 </script>
 </body>
-
 </html>
-
