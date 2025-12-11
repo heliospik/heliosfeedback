@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <title>Success</title>
 <link rel="stylesheet" href="style.css">
+
+<!-- Confetti library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 </head>
 
 <body>
@@ -17,15 +21,48 @@
     <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" width="100" style="filter: drop-shadow(0 0 6px #e6c17b);" />
 
     <p style="margin-top:20px;">Mengalihkan kembali dalam <span id="timer">5</span> detik...</p>
+
+    <!-- Music Christmas -->
+    <audio id="christmasMusic" autoplay loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
 </div>
 
 <script>
+// Countdown
 let c = 5;
-setInterval(() => {
+let countdown = setInterval(() => {
     c--;
     document.getElementById("timer").innerText = c;
-    if (c === 0) window.location.href = "index.html";
+    if (c === 0) {
+        clearInterval(countdown);
+        window.location.href = "index.html";
+    }
 }, 1000);
+
+// Confetti animation
+function launchConfetti() {
+    const duration = 3 * 1000; // 3 detik
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
+
+    function frame() {
+        confetti({
+            particleCount: 5,
+            ...defaults,
+            origin: { x: Math.random(), y: Math.random() - 0.2 }
+        });
+        if (Date.now() < animationEnd) requestAnimationFrame(frame);
+    }
+    frame();
+}
+
+// Jalankan confetti saat halaman load
+window.onload = () => {
+    launchConfetti();
+    document.getElementById("christmasMusic").play().catch(() => {});
+};
 </script>
 
 </body>
