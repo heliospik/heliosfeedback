@@ -1,13 +1,9 @@
-/* ======================= */
-/* General Body & Container */
-/* ======================= */
 body {
     margin: 0;
     font-family: "Poppins", sans-serif;
     background: #111;
     color: #fff;
     transition: 0.3s;
-    overflow-x: hidden;
 }
 
 body.dark {
@@ -30,15 +26,14 @@ body.dark .container {
     border-color: #ddd;
 }
 
-/* ======================= */
-/* Logo & Titles */
-/* ======================= */
+/* Logo */
 .logo {
     width: 120px;
     display: block;
     margin: 0 auto 10px;
 }
 
+/* Titles */
 .title {
     text-align: center;
     font-weight: 600;
@@ -51,15 +46,14 @@ body.dark .container {
     font-size: 14px;
 }
 
-/* ======================= */
-/* Form Elements */
-/* ======================= */
+/* Labels */
 label {
     font-weight: 500;
     display: block;
     margin-top: 15px;
 }
 
+/* Inputs */
 select, textarea, input[type="text"] {
     width: 100%;
     padding: 12px;
@@ -80,9 +74,7 @@ body.dark input[type="text"] {
 /* Dropdown text fix */
 select option { color: black; }
 
-/* ======================= */
 /* Rating Stars */
-/* ======================= */
 .rating span {
     font-size: 30px;
     cursor: pointer;
@@ -94,9 +86,7 @@ select option { color: black; }
     text-shadow: 0 0 10px #e6c17b;
 }
 
-/* ======================= */
-/* Buttons & Loader */
-/* ======================= */
+/* Button */
 button {
     width: 100%;
     margin-top: 20px;
@@ -113,6 +103,7 @@ button {
     transition: background 0.3s;
 }
 
+/* Loading state */
 button.loading .btn-text {
     opacity: 0;
 }
@@ -128,20 +119,19 @@ button.loading .btn-text {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -11px 0 0 -11px;
+    margin: -11px 0 0 -11px; /* center loader */
 }
 
 button.loading .loader {
     display: block;
 }
 
+/* Spinner animation */
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
 
-/* ======================= */
-/* Dark/Light Mode Toggle */
-/* ======================= */
+/* Mode Toggle */
 .mode-toggle {
     position: fixed;
     bottom: 20px;
@@ -152,47 +142,4 @@ button.loading .loader {
     border-radius: 50%;
     cursor: pointer;
     font-size: 18px;
-}
-
-/* ======================= */
-/* Success Page: Stars & Confetti */
-/* ======================= */
-.star {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: #fff;
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: twinkle 2s infinite;
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 0.2; }
-    50% { opacity: 1; }
-}
-
-/* Success Page Container */
-.success-container {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    padding: 40px;
-}
-
-.success-container .title {
-    font-size: 28px;
-    margin-bottom: 15px;
-    color: #e6c17b;
-}
-
-.success-container img {
-    margin-top: 15px;
-    width: 100px;
-    filter: drop-shadow(0 0 6px #e6c17b);
-}
-
-#timer {
-    font-weight: 600;
-    color: #e6c17b;
 }
