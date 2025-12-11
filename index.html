@@ -103,9 +103,7 @@ ratingStars.forEach(star => {
         const val = parseInt(star.dataset.value);
         ratingStars.forEach(s => s.classList.remove("selected"));
         ratingStars.forEach(s => {
-            if (parseInt(s.dataset.value) <= val) {
-                s.classList.add("selected");
-            }
+            if (parseInt(s.dataset.value) <= val) s.classList.add("selected");
         });
         ratingInput.value = val;
     });
@@ -132,22 +130,21 @@ form.addEventListener("submit", async (e) => {
     };
 
     try {
-        const response = await fetch(SCRIPT_URL, {
+        // POST data ke GAS dengan x-www-form-urlencoded + no-cors
+        await fetch(SCRIPT_URL, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(data),
+            mode: "no-cors"
         });
 
-        const result = await response.json();
+        alert("Feedback terkirim!");
+        form.reset();
+        ratingStars.forEach(s => s.classList.remove("selected"));
+        ratingInput.value = "";
+        submitBtn.classList.remove("loading");
+        submitBtn.disabled = false;
 
-        if (result.status === "success") {
-            // Redirect ke halaman sukses
-            window.location.href = "success.html";
-        } else {
-            alert("Terjadi kesalahan: " + (result.message || "unknown error"));
-            submitBtn.classList.remove("loading");
-            submitBtn.disabled = false;
-        }
     } catch (error) {
         console.error(error);
         alert("Gagal mengirim feedback. Silakan coba lagi.");
@@ -164,4 +161,5 @@ document.getElementById("toggleMode").addEventListener("click", () => {
 
 </body>
 </html>
+
 
