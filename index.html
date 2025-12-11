@@ -1,168 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Helios Feedback</title>
-<link rel="stylesheet" href="style.css" />
-
-<!-- Google Font -->
+<link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 </head>
 <body>
 
 <div class="container">
 
-    <!-- Logo -->
-    <img src="logo.png" class="logo" />
+  <!-- Logo -->
+  <img src="logo.png" class="logo">
 
-    <!-- Title -->
-    <h2 class="title">Kritik & Saran</h2>
-    <p class="subtitle">Kami menghargai masukan Anda untuk peningkatan layanan kami.</p>
+  <h2 class="title">Kritik & Saran</h2>
+  <p class="subtitle">Kami menghargai masukan Anda untuk peningkatan layanan kami.</p>
 
-    <!-- Form -->
-    <form id="feedbackForm">
+  <!-- Form tradisional untuk menghindari CORS -->
+  <form id="feedbackForm" action="https://script.google.com/macros/s/AKfycbyFPZOz2hZl45FjLHr8nLe8rePGeZse4iiXpB8C-rCErL644oMW64l2MZxMli1WMJYp4w/exec" method="POST" target="hidden_iframe">
 
-        <!-- Nama Pengunjung -->
-        <label>Nama Anda (optional)</label>
-        <input type="text" id="nama" placeholder="Tulis nama Anda..." />
+    <label>Nama Anda (optional)</label>
+    <input type="text" name="nama" placeholder="Tulis nama Anda...">
 
-        <!-- Table Number Dropdown -->
-        <label>Nomor Table</label>
-        <select id="tableNo" required>
-            <option value="" disabled selected>Pilih Nomor Table</option>
+    <label>Nomor Table</label>
+    <select name="tableNo" required>
+      <option value="" disabled selected>Pilih Nomor Table</option>
+      <option>ST1</option><option>ST2</option><option>S3</option><option>S7</option>
+      <option>S8</option><option>S9</option><option>S12</option><option>S5</option>
+      <option>S6</option><option>S2</option><option>S11</option><option>S13</option>
+      <option>S1</option><option>S10</option><option>S15</option><option>T1</option>
+      <option>T2</option><option>T3</option><option>T5</option><option>T6</option>
+      <option>T7</option><option>VIP1</option><option>VIP2</option><option>BL10</option>
+      <option>BL11</option><option>BL12</option><option>BL13</option><option>BL1</option>
+      <option>BL8</option><option>BL2</option><option>BL9</option><option>BL3</option>
+      <option>BL5</option><option>BL6</option><option>BL7</option><option>ALULA</option>
+      <option>AZURE</option><option>AQUILA</option><option>SIRIUS</option><option>SELENE</option>
+      <option>HERA</option><option>HEMERA</option><option>DRACO</option><option>LUCIUS</option>
+      <option>PENTHOUSE</option>
+    </select>
 
-            <option>ST1</option><option>ST2</option><option>S3</option><option>S7</option>
-            <option>S8</option><option>S9</option><option>S12</option><option>S5</option>
-            <option>S6</option><option>S2</option><option>S11</option><option>S13</option>
-            <option>S1</option><option>S10</option><option>S15</option><option>T1</option>
-            <option>T2</option><option>T3</option><option>T5</option><option>T6</option>
-            <option>T7</option><option>VIP1</option><option>VIP2</option><option>BL10</option>
-            <option>BL11</option><option>BL12</option><option>BL13</option><option>BL1</option>
-            <option>BL8</option><option>BL2</option><option>BL9</option><option>BL3</option>
-            <option>BL5</option><option>BL6</option><option>BL7</option><option>ALULA</option>
-            <option>AZURE</option><option>AQUILA</option><option>SIRIUS</option><option>SELENE</option>
-            <option>HERA</option><option>HEMERA</option><option>DRACO</option><option>LUCIUS</option>
-            <option>PENTHOUSE</option>
+    <label>Kategori Komplain</label>
+    <select name="kategori" required>
+      <option value="" disabled selected>Pilih kategori</option>
+      <option>Makanan & Minuman</option>
+      <option>Layanan</option>
+      <option>Kebersihan</option>
+      <option>Suasana</option>
+      <option>Lainnya</option>
+    </select>
 
-        </select>
+    <label>Rating Layanan</label>
+    <div class="rating" id="ratingStars">
+      <span data-value="1">★</span>
+      <span data-value="2">★</span>
+      <span data-value="3">★</span>
+      <span data-value="4">★</span>
+      <span data-value="5">★</span>
+    </div>
+    <input type="hidden" name="rating" id="rating" required>
 
-        <!-- Kategori Komplain Dropdown -->
-        <label>Kategori Komplain</label>
-        <select id="kategori" required>
-            <option value="" disabled selected>Pilih kategori</option>
-            <option>Makanan & Minuman</option>
-            <option>Layanan</option>
-            <option>Kebersihan</option>
-            <option>Suasana</option>
-            <option>Lainnya</option>
-        </select>
+    <label>Kritik & Saran Anda</label>
+    <textarea name="message" placeholder="Tulis masukan Anda..." required></textarea>
 
-        <!-- Rating Stars -->
-        <label>Rating Layanan</label>
-        <div class="rating" id="ratingStars">
-            <span data-value="1">★</span>
-            <span data-value="2">★</span>
-            <span data-value="3">★</span>
-            <span data-value="4">★</span>
-            <span data-value="5">★</span>
-        </div>
+    <button type="submit">Kirim Feedback</button>
 
-        <!-- Hidden Rating Input -->
-        <input type="hidden" id="rating" required />
+  </form>
 
-        <!-- Textarea -->
-        <label>Kritik & Saran Anda</label>
-        <textarea id="message" placeholder="Tulis masukan Anda..." required></textarea>
+  <!-- iframe tersembunyi untuk submit -->
+  <iframe name="hidden_iframe" style="display:none;" onload="redirectSuccess()"></iframe>
 
-        <!-- Submit Button -->
-        <button type="submit" id="submitBtn">
-            <span class="btn-text">Kirim Feedback</span>
-            <div class="loader"></div>
-        </button>
-
-    </form>
-
-    <!-- Dark/Light toggle -->
-    <div class="mode-toggle" id="toggleMode">☾</div>
+  <div class="mode-toggle" id="toggleMode">☾</div>
 
 </div>
 
 <script>
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyFPZOz2hZl45FjLHr8nLe8rePGeZse4iiXpB8C-rCErL644oMW64l2MZxMli1WMJYp4w/exec";
-
-const form = document.getElementById("feedbackForm");
-const submitBtn = document.getElementById("submitBtn");
+// Rating stars
 const ratingStars = document.querySelectorAll("#ratingStars span");
 const ratingInput = document.getElementById("rating");
-
-// Rating system
 ratingStars.forEach(star => {
-    star.addEventListener("click", () => {
-        const val = parseInt(star.dataset.value);
-        ratingStars.forEach(s => s.classList.remove("selected"));
-        ratingStars.forEach(s => {
-            if (parseInt(s.dataset.value) <= val) {
-                s.classList.add("selected");
-            }
-        });
-        ratingInput.value = val;
-    });
+  star.addEventListener("click", () => {
+    const val = parseInt(star.dataset.value);
+    ratingStars.forEach(s => s.classList.remove("selected"));
+    ratingStars.forEach(s => { if (parseInt(s.dataset.value) <= val) s.classList.add("selected"); });
+    ratingInput.value = val;
+  });
 });
 
-// Submit form
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    if (!ratingInput.value) {
-        alert("Silakan pilih rating terlebih dahulu!");
-        return;
-    }
-
-    submitBtn.classList.add("loading");
-    submitBtn.disabled = true;
-
-    const data = {
-        nama: document.getElementById("nama").value,
-        tableNo: document.getElementById("tableNo").value,
-        kategori: document.getElementById("kategori").value,
-        rating: ratingInput.value,
-        message: document.getElementById("message").value
-    };
-
-    try {
-        const response = await fetch(SCRIPT_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data),
-        });
-
-        const result = await response.json();
-
-        if (result.status === "success") {
-            // Redirect ke halaman sukses
-            window.location.href = "success.html";
-        } else {
-            alert("Terjadi kesalahan: " + (result.message || "unknown error"));
-            submitBtn.classList.remove("loading");
-            submitBtn.disabled = false;
-        }
-    } catch (error) {
-        console.error(error);
-        alert("Gagal mengirim feedback. Silakan coba lagi.");
-        submitBtn.classList.remove("loading");
-        submitBtn.disabled = false;
-    }
-});
+// Redirect ke success.html setelah submit
+function redirectSuccess() {
+  const iframe = document.querySelector('iframe[name="hidden_iframe"]');
+  if (iframe.contentDocument && iframe.contentDocument.body.innerHTML.length > 0) {
+    window.location.href = "success.html";
+  }
+}
 
 // Dark mode toggle
 document.getElementById("toggleMode").addEventListener("click", () => {
-    document.body.classList.toggle("dark");
+  document.body.classList.toggle("dark");
 });
 </script>
 
-
 </body>
 </html>
-
