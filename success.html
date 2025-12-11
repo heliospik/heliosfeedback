@@ -1,32 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Success</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feedback Terkirim</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<div class="container" style="text-align:center; padding:40px;">
-    <h2 class="title">Terima Kasih!</h2>
-    <p style="margin-bottom:20px;">
-        Feedback Anda telah berhasil dikirim.
-    </p>
-
-    <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" width="100" style="filter: drop-shadow(0 0 6px #e6c17b);" />
-
-    <p style="margin-top:20px;">Mengalihkan kembali dalam <span id="timer">5</span> detik...</p>
+<div class="container">
+  <h2 class="title">Terima kasih!</h2>
+  <p class="subtitle">Feedback Anda sudah terkirim. Kami akan menindaklanjutinya.</p>
+  <a href="index.html"><button>Kembali ke Form</button></a>
 </div>
-
-<script>
-let c = 5;
-setInterval(() => {
-    c--;
-    document.getElementById("timer").innerText = c;
-    if (c === 0) window.location.href = "index.html";
-}, 1000);
-</script>
-
 </body>
 </html>
