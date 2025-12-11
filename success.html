@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <title>Success</title>
@@ -7,20 +7,30 @@
 
 <!-- Confetti library -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
 </head>
 
 <body>
 
-<div class="container" style="text-align:center; padding:40px;">
+<!-- Stars -->
+<script>
+for(let i=0;i<100;i++){
+    let star = document.createElement('div');
+    star.className = 'star';
+    star.style.top = Math.random()*100 + '%';
+    star.style.left = Math.random()*100 + '%';
+    star.style.width = star.style.height = Math.random()*3 + 1 + 'px';
+    star.style.animationDuration = (Math.random()*2+1) + 's';
+    document.body.appendChild(star);
+}
+</script>
+
+<div class="container">
     <h2 class="title">Terima Kasih!</h2>
-    <p style="margin-bottom:20px;">
-        Feedback Anda telah berhasil dikirim.
-    </p>
+    <p>Feedback Anda telah berhasil dikirim.</p>
 
-    <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" width="100" style="filter: drop-shadow(0 0 6px #e6c17b);" />
+    <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" />
 
-    <p style="margin-top:20px;">Mengalihkan kembali dalam <span id="timer">5</span> detik...</p>
+    <p>Mengalihkan kembali dalam <span id="timer">5</span> detik...</p>
 
     <!-- Music Christmas -->
     <audio id="christmasMusic" autoplay loop>
@@ -32,37 +42,52 @@
 <script>
 // Countdown
 let c = 5;
-let countdown = setInterval(() => {
+let timer = setInterval(() => {
     c--;
     document.getElementById("timer").innerText = c;
-    if (c === 0) {
-        clearInterval(countdown);
-        window.location.href = "index.html";
+    if(c === 0){
+        clearInterval(timer);
+        fadeOutMusic();
+        setTimeout(()=> window.location.href="index.html", 2000);
     }
 }, 1000);
 
 // Confetti animation
-function launchConfetti() {
-    const duration = 3 * 1000; // 3 detik
-    const animationEnd = Date.now() + duration;
-    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 1000 };
-
-    function frame() {
+function launchConfetti(){
+    const duration = 3000;
+    const end = Date.now() + duration;
+    const colors = ['#e6c17b','#fff'];
+    (function frame(){
         confetti({
             particleCount: 5,
-            ...defaults,
-            origin: { x: Math.random(), y: Math.random() - 0.2 }
+            startVelocity: 40,
+            spread: 360,
+            ticks: 60,
+            origin: { x: Math.random(), y: Math.random()*0.5 },
+            colors: colors
         });
-        if (Date.now() < animationEnd) requestAnimationFrame(frame);
-    }
-    frame();
+        if(Date.now() < end) requestAnimationFrame(frame);
+    })();
 }
 
-// Jalankan confetti saat halaman load
-window.onload = () => {
-    launchConfetti();
-    document.getElementById("christmasMusic").play().catch(() => {});
-};
+// Jalankan confetti saat load
+window.onload = () => launchConfetti();
+
+// Music fade out
+function fadeOutMusic(){
+    const music = document.getElementById('christmasMusic');
+    let vol = music.volume;
+    const fade = setInterval(()=>{
+        if(vol > 0.05){
+            vol -= 0.05;
+            music.volume = vol;
+        } else {
+            music.volume = 0;
+            music.pause();
+            clearInterval(fade);
+        }
+    }, 100);
+}
 </script>
 
 </body>
